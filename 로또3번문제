@@ -1,0 +1,81 @@
+# 3번 문제
+# n의 배수( 2,3,5,7 )
+# 홀 / 짝 (홀짝 개수 더하기)
+# / average / Min / Max
+
+import random
+
+nums = [[5, 7, 12, 20, 25, 26], [30, 31, 34, 39, 41, 45], [10, 16, 19, 27, 37, 38], [4, 8, 22, 26, 32, 38], [1, 9, 10, 13, 35, 44]] # 최근 5회차 번호
+
+rannum = []
+while len(rannum) < 6: # 랜덤번호생성
+  lotto = int(random.random() * 45) + 1 # random.random 함수를 사용해 1 ~ 45 범위의 랜덤값으로 변환
+  if lotto not in rannum: # 중복이 아니라면
+    rannum.append(lotto) # 추가
+
+print(f"이번의 랜덤 당첨 번호: {sorted(rannum)}") # 정렬 후 랜덤숫자 출력
+print()
+
+# 최근 5회의 기록과 각각 몇개 당첨됐는지 확인
+for i in range(0, len(nums)): # for문으로 0부터 nums의 길이까지 반복
+  draw = nums[i] # nums의 리스트를 가져옴
+  matchnum = set(rannum) & set(draw) # 랜덤생성번호와 각 회차 번호가 일치하는 matchnum
+  matchcount = len(matchnum) # 일치 횟수는 일치 번호의 길이
+
+  print(f"최근 {i + 1}회차 번호: {draw} --> 당첨 개수 : {matchcount}개 (당첨 숫자: {sorted(matchnum)})")
+  
+print()
+# n의 배수 구하기
+for i in range(len(nums)):
+    draw = nums[i] # nums의 리스트를 가져옴
+    multiple2 = 0
+    multiple3 = 0
+    multiple5 = 0
+    multiple7 = 0
+
+    for num in draw:
+        if num % 2 == 0:
+            multiple2 += 1
+        if num % 3 == 0:
+            multiple3 += 1
+        if num % 5 == 0:
+            multiple5 += 1
+        if num % 7 == 0:
+            multiple7 += 1
+
+    print(f"{i + 1}회차 번호 : {draw}")
+    print(f"배수의 숫자 개수는? 2의 배수 : {multiple2}개, 3의 배수 : {multiple3}개, 5의 배수 : {multiple5}개, 7의 배수 : {multiple7}개")
+print()
+
+# 홀 / 짝 개수 구하기(더하기)
+oddtot = 0 # 총 홀수 변수
+eventot = 0 # 총 짝수 변수
+
+for i in range(len(nums)) :
+  draw = nums[i] # nums의 리스트를 가져옴
+  odd = 0
+  even = 0
+
+  for num in draw :
+    if num % 2 != 0: # 홀수일 경우
+      odd += 1
+    else :           # 짝수일 경우
+      even += 1
+
+  oddtot += odd # 홀수 총합
+  eventot += even # 짝수 총합
+
+  print(f"{i + 1}회차 번호 : {draw}")
+  print(f"홀수 : {odd}개, 짝수 : {even}개")
+print(f"전체 홀수 개수 합산 : {oddtot}개, 전체 짝수 개수 합산 : {eventot}개")
+print()
+
+# average, Min, Max
+for i in range(len(nums)) :
+  draw = nums[i]
+  maxnum = max(draw)
+  minnum = min(draw)
+  avenum = sum(draw) / len(draw)
+
+  print(f"{i + 1}회차 번호 : {draw}")
+  print(f"최대값 : {maxnum}, 최소값 : {minnum}, 평균 : {avenum:.1f}")
