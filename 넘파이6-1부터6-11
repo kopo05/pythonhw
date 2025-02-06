@@ -1,0 +1,119 @@
+# 넘파이 활용 각각 하나씩 묶어서 코드 6-1부터 6 - 11까지
+
+# 6 - 1
+# 리스트 생성 배열 반환
+list1 = [1, 2, 3, 4]
+a = np.array(list1)
+print('a.shape: ', a.shape)
+print('a[0]: ', a[0])
+
+# 2차원 배열 생성
+b = np.array([[1, 2, 3],[4, 5, 6]])
+print('b.shape: ', b.shape)
+print('b[0, 0]: ', b[0, 0])
+print('b[0]: ', b[0])
+
+# 6 - 2
+a = np.zeros(2)
+print('a\n', a)
+b = np.zeros((2, 2))
+print('b\n', b)
+c = np.ones((2,3))
+print('c\n', c)
+d = np.full((2, 3), 5)
+print('d\n', d)
+e = np.eye(3)
+print('e\n', e)
+
+# 6 - 3
+# 실수형배열
+a = np.array([1, 2], dtype = np.float64)
+print(a.dtype)
+
+#정수형배열
+a_i8 = a.astype(np.int8)
+print(a_i8.dtype)
+
+# 6 - 4
+arr = np.array([[0, 1, 2], [3, 4, 5]])
+
+print('type(arr):', type(arr))
+print('arr.ndim:', arr.ndim)
+print('arr.dtype:', arr.dtype)
+print('arr.itemsize:', arr.itemsize)
+print('arr.size:', arr.size)
+print('arr.nbytes:', arr.nbytes)
+print('arr.T:\n', arr.T)
+print('arr.shape:', arr.shape)
+
+# 6 - 5
+# 1차원 배열 생성
+a = np.arange(8)
+print('a\n', a)
+
+# 다차원
+a.shape = (2,4)
+print('shape\n, a')
+
+# 1차원
+print('flatten\n, a.flatten()')
+
+#resize 함수로 모양 변경
+a.resize((4, 2))
+print('resize\n', a)
+
+# 6 - 6
+a = np.array([[0, 1, 2], [3, 4, 5]])
+print('a\n', a)
+
+b = a.transpose()
+print('b\n', b)
+c = a.T
+print('c\n', c)
+
+# 6 - 7
+mask = np.array([0, 1, 1, 0], dtype = bool)
+print(mask)
+
+data = np.random.randn(4, 2)
+print('\ndata 출력\n', data)
+
+print('\n마스킹된 데이터 출력\n', data[mask])
+print('\n마스킹 역전된 데이터 출력\n', data[~mask])
+
+# 6 - 8
+posit = data[data > 0]
+print('양수 데이터 출력', '\n', posit)
+
+# 다중 조건
+over1 = data[1][data[1] > 0]
+print('두 번째 행의 양수 데이터 출력','\n', over1)
+
+# 6 - 9
+a = np.arange(6) 
+b = a 
+print(a) 
+print(b is a) 
+
+b[0] = 10 
+print(a)
+
+# 6 - 10
+a = np.arange(6) 
+c = a.copy( )
+
+c[0] = 20 
+print('A: ', a) 
+print('C: ', c)
+
+# 6 - 11
+a = np.array([3, 2, 5, 1, 4]) 
+
+print('원본\n',a) 
+print('정렬 후\n',np.sort(a)) 
+
+print('원본\n',a) 
+print('정렬한 인덱스\n',np.argsort(a)) 
+
+a.sort( ) 
+print('원본\n',a)
