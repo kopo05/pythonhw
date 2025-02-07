@@ -11,7 +11,7 @@ province_mapping = {
     "전북": "Jeonbuk", "전남": "Jeonnam", "경북": "Gyeongbuk", "경남": "Gyeongnam", "제주": "Jeju"
 }
 
-# 병원 정보 데이터 읽기
+# 병원 정보 데이터 읽어오는 함수 정의
 def addProvince(file_path):
     df_hospital = pd.read_csv(file_path, encoding="cp949")
 
@@ -20,7 +20,7 @@ def addProvince(file_path):
 
     return province_count # 데이터 리턴
 
-# 인구 데이터 읽기 (빈 값 처리 및 pandas 사용)
+# 인구 데이터 읽어오는 함수 정의 (빈 값 처리 및 pandas 사용)
 def addPopulation(file_path):
     df_population = pd.read_csv(file_path, encoding="cp949")
 
@@ -46,7 +46,7 @@ def calHospital(hospitalData, populationData):
             result.append((province, ratio)) # 결과 리스트에 추가
     return result
 
-# 함수들을 사용해 데이터 가공 및 전처리
+# 위에서 정의한 함수들을 사용해 데이터 읽어오고 총 계산
 def dataProcess(file_path_hospital, file_path_population, year):
     hospitalData = addProvince(file_path_hospital) # 병원 데이터 addProvince함수로 읽어오기
     populationData = addPopulation(file_path_population) # 인구 데이터 addPopulation 함수로 읽어오기
@@ -57,8 +57,8 @@ def dataProcess(file_path_hospital, file_path_population, year):
 def getHospitalData(file_path_hospital, file_path_population, year):
     hospitalTot = dataProcess(file_path_hospital, file_path_population, year)
     df = pd.DataFrame(hospitalTot, columns=['Province', f'Ratio_{year}']) # pd(pandas) 사용
-    # 한글 → 영어로 변환
-    df['Province'] = df['Province'].map(province_mapping) # 매핑
+    # 한글 → 영어로 변환(매핑)
+    df['Province'] = df['Province'].map(province_mapping)
     return df
 
 # 2021, 2022, 2023년 데이터 처리
@@ -117,7 +117,7 @@ df_hospital = pd.read_csv("/content/1.병원정보서비스.csv", encoding="cp94
 # 개설일자(n열: 인덱스 기준 13번 열)에서 연도 추출
 df_hospital['개설일자'] = df_hospital.iloc[:, 13].astype(str).str[:4].astype(int)  # 연도 추출
 
-# 연도별 항목 나누기
+# 연도별 항목 나누는 함수 선언
 def group_years(year):
     if year <= 1959:
         return "1900-1959"
@@ -148,10 +148,10 @@ def group_years(year):
     else:
         return "2021-2023"
 
-# 그룹화 적용
+# 함수를 적용해 개설일자별로 나누기
 df_hospital['GroupedYears'] = df_hospital['개설일자'].apply(group_years)
 
-# 그룹별 병원 수 계산
+# 개설일자별 병원 수를 계산
 grouped_counts = df_hospital['GroupedYears'].value_counts().sort_index()
 
 # 그래프 생성
