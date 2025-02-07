@@ -18,7 +18,7 @@ a = np.zeros(2)
 print('a\n', a)
 b = np.zeros((2, 2))
 print('b\n', b)
-c = np.ones((2,3))
+c = np.ones((2, 3))
 print('c\n', c)
 d = np.full((2, 3), 5)
 print('d\n', d)
@@ -90,30 +90,30 @@ over1 = data[1][data[1] > 0]
 print('두 번째 행의 양수 데이터 출력','\n', over1)
 
 # 6 - 9
-a = np.arange(6) 
-b = a 
-print(a) 
-print(b is a) 
+a = np.arange(6)
+b = a
+print(a)
+print(b is a)
 
-b[0] = 10 
+b[0] = 10
 print(a)
 
 # 6 - 10
-a = np.arange(6) 
+a = np.arange(6)
 c = a.copy( )
 
-c[0] = 20 
-print('A: ', a) 
+c[0] = 20
+print('A: ', a)
 print('C: ', c)
 
 # 6 - 11
-a = np.array([3, 2, 5, 1, 4]) 
+a = np.array([3, 2, 5, 1, 4])
 
-print('원본\n', a) 
-print('정렬 후\n',np.sort(a)) 
+print('원본\n', a)
+print('정렬 후\n',np.sort(a))
 
-print('원본\n', a) 
-print('정렬한 인덱스\n',np.argsort(a)) 
+print('원본\n', a)
+print('정렬한 인덱스\n',np.argsort(a))
 
-a.sort( ) 
+a.sort( )
 print('원본\n', a)
