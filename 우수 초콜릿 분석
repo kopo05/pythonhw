@@ -13,7 +13,7 @@ high_id = high_level[:, 0].astype(np.int64)
 print('우수 초콜릿 수:', high_id.size)
 print(high_id)
 
-high_kakao = high_level[:,2]
+high_kakao = high_level[:, 2]
 unique_values, value_counts = np.unique(high_kakao, return_counts=True)
 print('카카오 함유량:', unique_values)
 print('함유량별 빈도수:', value_counts)
