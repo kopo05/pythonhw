@@ -147,7 +147,7 @@ def group_years(year):
     elif 2016 <= year <= 2020:
         return "2016-2020"
     else:
-        return "2021-2025"
+        return "2021-2023"
 
 # 그룹화 적용
 df_hospital['GroupedYears'] = df_hospital['개설일자'].apply(group_years)
