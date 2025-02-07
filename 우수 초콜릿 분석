@@ -1,15 +1,15 @@
 import numpy as np
-data = np.loadtxt('/content/chocolate_rating.csv', delimiter=',')
+data = np.loadtxt('/content/chocolate_rating.csv', delimiter = ',')
 print('차원:', data.ndim)
 print('모양:', data.shape)
 print('원소 수:', data.size)
 print(data)
 
-ratings_mean = data[:,3].mean( )
+ratings_mean = data[:, 3].mean( )
 print(ratings_mean)
 
-high_level = data[data[:,3] >= 4]
-high_id = high_level[:,0].astype(np.int64)
+high_level = data[data[:, 3] >= 4]
+high_id = high_level[:, 0].astype(np.int64)
 print('우수 초콜릿 수:', high_id.size)
 print(high_id)
 
