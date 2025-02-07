@@ -38,9 +38,9 @@ def addPopulation(file_path):
 # 병원 수와 인구 수 데이터를 사용할 계산 함수 정의
 def calHospital(hospitalData, populationData):
   # 병원 수와 인구 수 비율 계산
-    result = []
-    for province, hospital_count in hospitalData.items():
-        population = populationData.get(province, None)
+    result = [] # 결과를 담을 함수 선언
+    for province, hospital_count in hospitalData.items(): # province는 지역, hospital_count는 값을 받음
+        population = populationData.get(province, None) # populationData는 지역별 인구 데이터 담은 딕셔너리
         if population:  # 인구 데이터가 있다면
             ratio = hospital_count / population # 병원 수 / 인구 수 계산 => ratio 변수에 저장
             result.append((province, ratio)) # 결과 리스트에 추가
@@ -66,7 +66,7 @@ df_2021 = getHospitalData("/content/1. 병원정보서비스 2021.12.csv", "/con
 df_2022 = getHospitalData("/content/1.병원정보서비스 2022.12.csv", "/content/2022_수정_주민등록인구및세대현황_월간.csv", 2022)
 df_2023 = getHospitalData("/content/1.병원정보서비스.csv", "/content/2023_수정_주민등록인구및세대현황_월간.csv", 2023)
 
-# 병원 비율 데이터를 세로로 정렬하고, 세 개의 연도 데이터 합침
+# 병원 비율 데이터를 sort로 정렬하고, 세 개의 연도 데이터 합침
 df_2021 = df_2021.set_index('Province').sort_index()
 df_2022 = df_2022.set_index('Province').sort_index()
 df_2023 = df_2023.set_index('Province').sort_index()
