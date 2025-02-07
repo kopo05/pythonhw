@@ -108,3 +108,61 @@ plt.tight_layout()
 
 # 그래프 출력
 plt.show()
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 병원 정보 데이터 (최신 2023년 기준으로 잡음)
+df_hospital = pd.read_csv("/content/1.병원정보서비스.csv", encoding="cp949")
+
+# 개설일자(n열: 인덱스 기준 13번 열)에서 연도 추출
+df_hospital['개설일자'] = df_hospital.iloc[:, 13].astype(str).str[:4].astype(int)  # 연도 추출
+
+# 연도별 항목 나누기
+def group_years(year):
+    if year <= 1959:
+        return "1900-1959"
+    elif 1960 <= year <= 1965:
+        return "1960-1965"
+    elif 1966 <= year <= 1970:
+        return "1966-1970"
+    elif 1971 <= year <= 1975:
+        return "1971-1975"
+    elif 1976 <= year <= 1980:
+        return "1976-1980"
+    elif 1981 <= year <= 1985:
+        return "1981-1985"
+    elif 1986 <= year <= 1990:
+        return "1986-1990"
+    elif 1991 <= year <= 1995:
+        return "1991-1995"
+    elif 1996 <= year <= 2000:
+        return "1996-2000"
+    elif 2001 <= year <= 2005:
+        return "2001-2005"
+    elif 2006 <= year <= 2010:
+        return "2006-2010"
+    elif 2011 <= year <= 2015:
+        return "2011-2015"
+    elif 2016 <= year <= 2020:
+        return "2016-2020"
+    else:
+        return "2021-2025"
+
+# 그룹화 적용
+df_hospital['GroupedYears'] = df_hospital['개설일자'].apply(group_years)
+
+# 그룹별 병원 수 계산
+grouped_counts = df_hospital['GroupedYears'].value_counts().sort_index()
+
+# 그래프 생성
+plt.figure(figsize=(12, 8))
+grouped_counts.plot(kind='bar', color='skyblue', edgecolor='black')
+plt.title('Hospitals Opened by Year Group', fontsize=16)
+plt.xlabel('Year Group', fontsize=14)
+plt.ylabel('Number of Hospitals', fontsize=14)
+plt.xticks(rotation=45, fontsize=12)
+plt.yticks(fontsize=12)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.tight_layout()
+plt.show()
