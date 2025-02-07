@@ -58,7 +58,7 @@ def getHospitalData(file_path_hospital, file_path_population, year):
     hospitalTot = dataProcess(file_path_hospital, file_path_population, year)
     df = pd.DataFrame(hospitalTot, columns=['Province', f'Ratio_{year}']) # pd(pandas) 사용
     # 한글 → 영어로 변환
-    df['Province'] = df['Province'].map(province_mapping)
+    df['Province'] = df['Province'].map(province_mapping) # 매핑
     return df
 
 # 2021, 2022, 2023년 데이터 처리
@@ -109,8 +109,7 @@ plt.tight_layout()
 # 그래프 출력
 plt.show()
 
-import pandas as pd
-import matplotlib.pyplot as plt
+# -- 개설일자별 그래프 그리기
 
 # 병원 정보 데이터 (최신 2023년 기준으로 잡음)
 df_hospital = pd.read_csv("/content/1.병원정보서비스.csv", encoding="cp949")
